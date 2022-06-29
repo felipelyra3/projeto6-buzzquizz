@@ -53,6 +53,30 @@
         terceiraTela.innerHTML += ``;
     }
     terceiraTela.innerHTML += `</div>
-    </div>`;
+    </div>
+    <div class="botaoCriarPerguntas" onclick="validaCrieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div>`;
 
 
+
+
+<h1>Crie suas perguntas</h1>
+    <div class="conteinerInputs">
+        <div class="perguntas">
+        <h1>Pergunta</h1>
+        <div class="escondido">
+            <input type="text" placeholder="Texto da pergunta" name="txtPergunta" id="">
+            <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" id="">
+            
+            <h1>Resposta Correta</h1>
+            <input type="text" placeholder="Resposta correta" name="respostaCorreta" id="">
+            <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" id="">
+
+            <h1>Respostas Incorretas</h1>
+        
+        <input type="text" placeholder="Resposta incorreta" name="respostaIncorreta" id="">
+            <input type="text" placeholder="URL da imagem" name="urlDaImagemIncorreta" id="">
+            <br />
+            </div>
+    </div>
+    </div>
+    <div class="botaoCriarPerguntas" onclick="validaCrieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div>

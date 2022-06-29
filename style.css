@@ -129,6 +129,13 @@ body {
     color: #FFF5F4;
 }
 
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 
 /* RESOLUÇÃO PARA MOBILE - MÁXIMA DE 1100px */
 @media (max-width: 110px) {

@@ -39,11 +39,42 @@ function verificaComecePeloComeco () {
 function crieSuasPerguntas (/* terceiraTela, tituloQuizz, urlImagem, qtdPerguntas, qtdNiveis */) {
     const terceiraTela = document.querySelector('.terceiraTela');
     qtdPerguntas = 3;
-    terceiraTela.innerHTML = `<h1>Crie suas perguntas</h1>`;
+    let text = "";
+    text += `<h1>Crie suas perguntas</h1>
+    <div class="conteinerInputs">
+        `;
     for(let i = 0; i < qtdPerguntas; i++) {
-        terceiraTela.innerHTML += `<div class="conteinerInputs">
-        <div class="perguntas">
+        text += `<div class="perguntas">
         <h1>Pergunta ${i + 1}</h1>
+        <div class="escondido">
+            <input type="text" placeholder="Texto da pergunta" name="txtPergunta" class="txtPergunta" id="">
+            <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" id="">
+            
+            <h1>Resposta Correta</h1>
+            <input type="text" placeholder="Resposta correta" name="respostaCorreta" id="">
+            <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" id="">
+
+            <h1>Respostas Incorretas</h1>`;
+
+        for (let y = 0; y < 3; y++) {
+            text += `<input type="text" placeholder="Resposta incorreta ${y + 1}" name="respostaIncorreta${y + 1}" id="">
+            <input type="text" placeholder="URL da imagem ${y + 1}" name="urlDaImagemIncorreta${y + 1}" id="">
+            <br />`;
+        }
+
+        text += ``;
+    }
+    text += `</div>
+    </div>
+    <div class="center">
+    <div class="botaoCriarPerguntas" onclick="validaCrieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div></div>`;
+
+    terceiraTela.innerHTML = text;
+
+    /* terceiraTela.innerHTML = `<h1>Crie suas perguntas</h1>
+    <div class="conteinerInputs">
+        <div class="perguntas">
+        <h1>Pergunta</h1>
         <div class="escondido">
             <input type="text" placeholder="Texto da pergunta" name="txtPergunta" id="">
             <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" id="">
@@ -52,19 +83,73 @@ function crieSuasPerguntas (/* terceiraTela, tituloQuizz, urlImagem, qtdPergunta
             <input type="text" placeholder="Resposta correta" name="respostaCorreta" id="">
             <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" id="">
 
-            <h1>Respostas Incorretas</h1>`;
+            <h1>Respostas Incorretas</h1>
         
-        for (let y = 0; y < 3; y++) {
-            terceiraTela.innerHTML += `<input type="text" placeholder="Resposta incorreta ${y + 1}" name="respostaIncorreta${y + 1}" id="">
-            <input type="text" placeholder="URL da imagem ${y + 1}" name="urlDaImagemIncorreta${y + 1}" id="">
-            <br />`;
-        }
-
-        terceiraTela.innerHTML += `</div>`;
-    }
-    terceiraTela.innerHTML += `</div>
-    </div>`;
+        <input type="text" placeholder="Resposta incorreta" name="respostaIncorreta" id="">
+            <input type="text" placeholder="URL da imagem" name="urlDaImagemIncorreta" id="">
+            <br />
+            </div>
+    </div>
+    </div>
+    <div class="botaoCriarPerguntas" onclick="validaCrieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div>
     
+    <h1>Crie suas perguntas</h1>
+    <div class="conteinerInputs">
+        <div class="perguntas">
+        <h1>Pergunta</h1>
+        <div class="escondido">
+            <input type="text" placeholder="Texto da pergunta" name="txtPergunta" id="">
+            <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" id="">
+            
+            <h1>Resposta Correta</h1>
+            <input type="text" placeholder="Resposta correta" name="respostaCorreta" id="">
+            <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" id="">
+
+            <h1>Respostas Incorretas</h1>
+        
+        <input type="text" placeholder="Resposta incorreta" name="respostaIncorreta" id="">
+            <input type="text" placeholder="URL da imagem" name="urlDaImagemIncorreta" id="">
+            <br />
+            </div>
+    </div>
+    </div>
+    <div class="botaoCriarPerguntas" onclick="validaCrieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div>
+    
+    <h1>Crie suas perguntas</h1>
+    <div class="conteinerInputs">
+        <div class="perguntas">
+        <h1>Pergunta</h1>
+        <div class="escondido">
+            <input type="text" placeholder="Texto da pergunta" name="txtPergunta" id="">
+            <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" id="">
+            
+            <h1>Resposta Correta</h1>
+            <input type="text" placeholder="Resposta correta" name="respostaCorreta" id="">
+            <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" id="">
+
+            <h1>Respostas Incorretas</h1>
+        
+        <input type="text" placeholder="Resposta incorreta" name="respostaIncorreta" id="">
+            <input type="text" placeholder="URL da imagem" name="urlDaImagemIncorreta" id="">
+            <br />
+            </div>
+    </div>
+    </div>
+    <div class="botaoCriarPerguntas" onclick="validaCrieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div>`; */
+    
+}
+
+function validaCrieSuasPerguntas() {
+    qtdPerguntas = 3;
+    /* const txtPergunta = [];
+    const corDeFundo = [];
+    for (let i = 0; i < qtdPerguntas; i++) {
+        txtPergunta[i] = document.querySelector('.[i]"]').value;
+        corDeFundo[i] = document.querySelector('.perguntas input[name="corDeFundo"]').value;
+    } */
+
+    const txtPergunta = document.querySelectorAll('.txtPergunta');
+    console.log(txtPergunta[1].value);
 }
 
 function isURL(string) {
