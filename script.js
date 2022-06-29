@@ -1,5 +1,6 @@
-comecePeloComeco();
+//comecePeloComeco();
 
+//Primeira Tela
 function comecePeloComeco () {
     const terceiraTela = document.querySelector('.terceiraTela');
     terceiraTela.innerHTML = `<h1>Comece pelo começo</h1>
@@ -12,6 +13,7 @@ function comecePeloComeco () {
     <div class="botaoCriarPerguntas" onclick="crieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div>`;
 }
 
+//Verificações da primeira Tela
 function crieSuasPerguntas () {
     const terceiraTela = document.querySelector('.terceiraTela');
     const tituloQuizz = document.querySelector('.conteinerInputs input[name="titulo"]').value;
