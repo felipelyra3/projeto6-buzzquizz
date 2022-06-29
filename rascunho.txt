@@ -1,0 +1,58 @@
+<h1>Crie suas perguntas</h1>
+    <div class="conteinerInputs">
+        <div class="perguntas">
+            <h1>Pergunta 1</h1>
+            <div class="escondido">
+                <input type="text" placeholder="Texto da pergunta" name="txtPergunta" id="">
+                <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" id="">
+
+                <h1>Resposta Correta</h1>
+                <input type="text" placeholder="Resposta correta" name="respostaCorreta" id="">
+                <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" id="">
+
+                <h1>Respostas Incorretas</h1>
+                <input type="text" placeholder="Resposta incorreta 1" name="respostaIncorreta1" id="">
+                <input type="text" placeholder="URL da imagem 1" name="urlDaImagemIncorreta1" id="">
+                <br />
+
+                <input type="text" placeholder="Resposta incorreta 2" name="respostaIncorreta2" id="">
+                <input type="text" placeholder="URL da imagem 2" name="urlDaImagemIncorreta2" id="">
+                <br />
+
+                <input type="text" placeholder="Resposta incorreta 3" name="respostaIncorreta3" id="">
+                <input type="text" placeholder="URL da imagem 3" name="urlDaImagemIncorreta3" id="">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    qtdPerguntas = 3;
+    terceiraTela.innerHTML = `<h1>Crie suas perguntas</h1>`;
+    for(let i = 0; i < qtdPerguntas; i++) {
+        terceiraTela.innerHTML += `<div class="conteinerInputs">
+        <div class="perguntas">
+        <h1>Pergunta ${i + 1}</h1>
+        <div class="escondido">
+            <input type="text" placeholder="Texto da pergunta" name="txtPergunta" id="">
+            <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" id="">
+            
+            <h1>Resposta Correta</h1>
+            <input type="text" placeholder="Resposta correta" name="respostaCorreta" id="">
+            <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" id="">
+
+            <h1>Respostas Incorretas</h1>`;
+        
+        for (let y = 0; y < 3; y++) {
+            terceiraTela.innerHTML += `<input type="text" placeholder="Resposta incorreta ${y + 1}" name="respostaIncorreta${y + 1}" id="">
+            <input type="text" placeholder="URL da imagem ${y + 1}" name="urlDaImagemIncorreta${y + 1}" id="">
+            <br />`;
+        }
+
+        terceiraTela.innerHTML += ``;
+    }
+    terceiraTela.innerHTML += `</div>
+    </div>`;
+
+
