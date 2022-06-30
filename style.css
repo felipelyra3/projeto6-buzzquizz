@@ -88,6 +88,27 @@ body {
     padding-left: 12px;
 }
 
+.conteinerInputs input[type=number] {
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    width: 564px;
+    height: 46px;
+    margin: 5px;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #000000;
+    padding-left: 12px;
+}
+
+.conteinerInputs input[name=descricaoDoNivel] {
+    height: 341px;
+    margin-bottom: 20px;
+}
+
 .perguntas {
     display: flex;
     flex-direction: column;
