@@ -255,10 +255,10 @@ function verificaAgoraDecidaOsNiveis() {
             break;
         } */
 
-        Number(porcentagemMinimaDeAcerto[i]);
+        Number(porcentagemMinimaDeAcerto[i].value);
         console.log(typeof(porcentagemMinimaDeAcerto[i].value));
 
-        object.levels.push()
+        //object.levels.push();
 
     }
 
