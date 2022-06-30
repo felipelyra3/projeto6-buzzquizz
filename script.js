@@ -1,6 +1,6 @@
 //Variáveis Globais
-let qtdPerguntas = 0;
-let qtdNiveis = 0;
+let qtdPerguntas = 3;
+let qtdNiveis = 2;
 let tituloQuizz = "";
 let urlImagem = "";
 let txtPergunta = "";
@@ -25,11 +25,6 @@ let object = {
                     text: "Texto da resposta 1",
                     image: "https://http.cat/411.jpg",
                     isCorrectAnswer: true
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
                 }
             ]
         },
@@ -41,11 +36,6 @@ let object = {
                     text: "Texto da resposta 1",
                     image: "https://http.cat/411.jpg",
                     isCorrectAnswer: true
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
                 }
             ]
         },
@@ -57,11 +47,6 @@ let object = {
                     text: "Texto da resposta 1",
                     image: "https://http.cat/411.jpg",
                     isCorrectAnswer: true
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
                 }
             ]
         }
@@ -85,11 +70,11 @@ let object = {
 //Chamar as funções - COMENTAR AQUI
 //comecePeloComeco();
 //crieSuasPerguntas();
-//agoraDecidaOsNiveis();
+agoraDecidaOsNiveis();
 //criarQuizz();
 
 //Primeira Tela
-function comecePeloComeco () {
+function comecePeloComeco() {
     const terceiraTela = document.querySelector('.terceiraTela');
     terceiraTela.innerHTML = `<h1>Comece pelo começo</h1>
     <div class="conteinerInputs">
@@ -102,7 +87,7 @@ function comecePeloComeco () {
 }
 
 
-function verificaComecePeloComeco () {
+function verificaComecePeloComeco() {
     const terceiraTela = document.querySelector('.terceiraTela');
     tituloQuizz = document.querySelector('.conteinerInputs input[name="titulo"]').value;
     urlImagem = document.querySelector('.conteinerInputs input[name="urlImagem"]').value;
@@ -122,17 +107,17 @@ function verificaComecePeloComeco () {
         alert('A quantidade de níveis deve ser no mínimo 2');
     } else {
         terceiraTela.innerHTML = ``;
-        crieSuasPerguntas(terceiraTela);
+        crieSuasPerguntas();
     }
 }
 
-function crieSuasPerguntas (terceiraTela) {
-    /* const terceiraTela = document.querySelector('.terceiraTela'); */
+function crieSuasPerguntas() {
+    const terceiraTela = document.querySelector('.terceiraTela');
     let text = "";
     text += `<h1>Crie suas perguntas</h1>
     <div class="conteinerInputs">
         `;
-    for(let i = 0; i < qtdPerguntas; i++) {
+    for (let i = 0; i < qtdPerguntas; i++) {
         text += `<div class="perguntas">
         <h1>Pergunta ${i + 1}</h1>
         <div class="escondido">
@@ -146,8 +131,8 @@ function crieSuasPerguntas (terceiraTela) {
             <h1>Respostas Incorretas</h1>`;
 
         for (let y = 0; y < 3; y++) {
-            text += `<input type="text" placeholder="Resposta incorreta ${y + 1}" name="respostaIncorreta${y + 1}" class="respostaIncorreta" id="">
-            <input type="text" placeholder="URL da imagem ${y + 1}" name="urlDaImagemIncorreta${y + 1}" class="urlDaImagemIncorreta" id="">
+            text += `<input type="text" placeholder="Resposta incorreta ${y + 1}" name="respostaIncorreta" class="respostaIncorreta" id="">
+            <input type="text" placeholder="URL da imagem ${y + 1}" name="urlDaImagemIncorreta" class="urlDaImagemIncorreta" id="">
             <br />`;
         }
 
@@ -158,7 +143,7 @@ function crieSuasPerguntas (terceiraTela) {
     <div class="center">
     <div class="botaoCriarPerguntas" onclick="validaCrieSuasPerguntas()"><h1>Prosseguir para criar perguntas</h1></div></div>`;
 
-    terceiraTela.innerHTML = text;    
+    terceiraTela.innerHTML = text;
 }
 
 function validaCrieSuasPerguntas() {
@@ -170,6 +155,7 @@ function validaCrieSuasPerguntas() {
     urlDaImagemIncorreta = document.querySelectorAll('.urlDaImagemIncorreta');
 
     let y = 0;
+    let a = 0;
     let flag = 0;
     for (let i = 0; i < qtdPerguntas; i++) {
         flag = 0;
@@ -197,6 +183,18 @@ function validaCrieSuasPerguntas() {
             alert(`A URL da resposta incorreta da pergunta ${i + 1} precisa ser válida`);
             flag = 1;
             break;
+        }
+
+        object.questions[i].title = txtPergunta[i].value;
+        object.questions[i].color = corDeFundo[i].value;
+        object.questions[i].answers[0].text = respostaCorreta[i].value;
+        object.questions[i].answers[0].image = urlDaImagemCorreta[i].value;
+        object.questions[i].answers[0].isCorrectAnswer = true;
+
+        for (let z = 0; z < qtdPerguntas; z++) {
+            object.questions[i].answers.push({text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false});
+            //console.log(i + " " + a);
+            a++;
         }
 
         y = y + 3;
@@ -229,7 +227,7 @@ function agoraDecidaOsNiveis() {
     terceiraTela.innerHTML = text;
 }
 
-function verificaAgoraDecidaOsNiveis () {
+function verificaAgoraDecidaOsNiveis() {
     //let qtdNiveis = 2;
     tituloNivel = document.querySelectorAll('.tituloNivel');
     porcentagemMinimaDeAcerto = document.querySelectorAll('.porcentagemMinimaDeAcerto');
@@ -239,7 +237,7 @@ function verificaAgoraDecidaOsNiveis () {
     let flag = 0;
 
     for (let i = 0; i < qtdNiveis; i++) {
-        if (tituloNivel[i].value.length < 10) {
+        /* if (tituloNivel[i].value.length < 10) {
             alert(`O título do nível ${i + 1} precisa ter mais de 10 caracteres`);
             flag = 1;
             break;
@@ -255,7 +253,13 @@ function verificaAgoraDecidaOsNiveis () {
             alert(`A descrição do nível ${i + 1} precisa ter no mínimo 30 caracteres`);
             flag = 1;
             break;
-        } 
+        } */
+
+        Number(porcentagemMinimaDeAcerto[i]);
+        console.log(typeof(porcentagemMinimaDeAcerto[i].value));
+
+        object.levels.push()
+
     }
 
     let flag2 = 0;
@@ -275,7 +279,7 @@ function verificaAgoraDecidaOsNiveis () {
     if (flag === 0 && flag2 === 0) {
         criarQuizz();
     }
-}   
+}
 
 function criarQuizz() {
     /* console.log (`qtdPerguntas = ${qtdPerguntas};
@@ -292,17 +296,17 @@ function criarQuizz() {
     let porcentagemMinimaDeAcerto = ${porcentagemMinimaDeAcerto};
     let urlDaImagemDoNivel = ${urlDaImagemDoNivel};
     let descricaoDoNivel = ${descricaoDoNivel};`); */
-    
+
     console.log(object);
 }
 
 function isURL(string) {
     try {
-     let url = new URL(string)     
-     return true;
-   } catch(err) {
-       return false;
-   }
- }
+        let url = new URL(string)
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
 
- const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
+const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
