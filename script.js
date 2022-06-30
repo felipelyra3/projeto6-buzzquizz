@@ -1,9 +1,92 @@
-comecePeloComeco();
-//crieSuasPerguntas();
-
 //Variáveis Globais
 let qtdPerguntas = 0;
 let qtdNiveis = 0;
+let tituloQuizz = "";
+let urlImagem = "";
+let txtPergunta = "";
+let corDeFundo = "";
+let respostaCorreta = "";
+let urlDaImagemCorreta = "";
+let respostaIncorreta = "";
+let urlDaImagemIncorreta = "";
+let tituloNivel = "";
+let porcentagemMinimaDeAcerto = "";
+let urlDaImagemDoNivel = "";
+let descricaoDoNivel = "";
+let object = {
+    title: "Título do quizz",
+    image: "https://http.cat/411.jpg",
+    questions: [
+        {
+            title: "Título da pergunta 1",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 2",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 3",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        }
+    ],
+    levels: [
+        {
+            title: "Título do nível 1",
+            image: "https://http.cat/411.jpg",
+            text: "Descrição do nível 1",
+            minValue: 0
+        },
+        {
+            title: "Título do nível 2",
+            image: "https://http.cat/412.jpg",
+            text: "Descrição do nível 2",
+            minValue: 50
+        }
+    ]
+}
+
+//Chamar as funções - COMENTAR AQUI
+//comecePeloComeco();
+//crieSuasPerguntas();
+//agoraDecidaOsNiveis();
+//criarQuizz();
 
 //Primeira Tela
 function comecePeloComeco () {
@@ -21,10 +104,13 @@ function comecePeloComeco () {
 
 function verificaComecePeloComeco () {
     const terceiraTela = document.querySelector('.terceiraTela');
-    const tituloQuizz = document.querySelector('.conteinerInputs input[name="titulo"]').value;
-    const urlImagem = document.querySelector('.conteinerInputs input[name="urlImagem"]').value;
+    tituloQuizz = document.querySelector('.conteinerInputs input[name="titulo"]').value;
+    urlImagem = document.querySelector('.conteinerInputs input[name="urlImagem"]').value;
     qtdPerguntas = document.querySelector('.conteinerInputs input[name="qtdPerguntas"]').value;
     qtdNiveis = document.querySelector('.conteinerInputs input[name="qtdNiveis"]').value;
+
+    object.title = tituloQuizz;
+    object.image = urlImagem;
 
     if (tituloQuizz.length < 20) {
         alert('Seu título precisa ter entre 20 e 65 caracteres');
@@ -76,12 +162,12 @@ function crieSuasPerguntas (terceiraTela) {
 }
 
 function validaCrieSuasPerguntas() {
-    const txtPergunta = document.querySelectorAll('.txtPergunta');
-    const corDeFundo = document.querySelectorAll('.corDeFundo');
-    const respostaCorreta = document.querySelectorAll('.respostaCorreta');
-    const urlDaImagemCorreta = document.querySelectorAll('.urlDaImagemCorreta');
-    const respostaIncorreta = document.querySelectorAll('.respostaIncorreta');
-    const urlDaImagemIncorreta = document.querySelectorAll('.urlDaImagemIncorreta');
+    txtPergunta = document.querySelectorAll('.txtPergunta');
+    corDeFundo = document.querySelectorAll('.corDeFundo');
+    respostaCorreta = document.querySelectorAll('.respostaCorreta');
+    urlDaImagemCorreta = document.querySelectorAll('.urlDaImagemCorreta');
+    respostaIncorreta = document.querySelectorAll('.respostaIncorreta');
+    urlDaImagemIncorreta = document.querySelectorAll('.urlDaImagemIncorreta');
 
     let y = 0;
     let flag = 0;
@@ -117,8 +203,97 @@ function validaCrieSuasPerguntas() {
     }
 
     if (flag === 0) {
-        console.log(`Deu certo`);
+        agoraDecidaOsNiveis();
     }
+}
+
+function agoraDecidaOsNiveis() {
+    //let qtdNiveis = 2;
+    const terceiraTela = document.querySelector('.terceiraTela');
+    let text = "";
+    text += `<h1>Agora, decida os níveis!</h1>
+    <div class="conteinerInputs">`;
+
+    for (let i = 0; i < qtdNiveis; i++) {
+        text += `<div class="perguntas">
+        <h1>Nível ${i + 1}</h1>
+        <div class="escondido">
+            <input type="text" placeholder="Título do nível" name="tituloNivel" class="tituloNivel" id="">
+            <input type="number" placeholder="% de acerto mínimo" name="porcentagemMinimaDeAcerto" class="porcentagemMinimaDeAcerto" id="">
+            <input type="text" placeholder="URL da imagem do nível" name="urlDaImagemDoNivel" class="urlDaImagemDoNivel" id="">
+            <input type="text" placeholder="Descrição do nível" name="descricaoDoNivel" class="descricaoDoNivel" id="">
+        </div>`;
+    }
+    text += `</div></div>
+    <div class="center"><div class="botaoCriarPerguntas" onclick="verificaAgoraDecidaOsNiveis();"><h1>Prosseguir para criar perguntas</h1></div></div>`;
+    terceiraTela.innerHTML = text;
+}
+
+function verificaAgoraDecidaOsNiveis () {
+    //let qtdNiveis = 2;
+    tituloNivel = document.querySelectorAll('.tituloNivel');
+    porcentagemMinimaDeAcerto = document.querySelectorAll('.porcentagemMinimaDeAcerto');
+    urlDaImagemDoNivel = document.querySelectorAll('.urlDaImagemDoNivel');
+    descricaoDoNivel = document.querySelectorAll('.descricaoDoNivel');
+
+    let flag = 0;
+
+    for (let i = 0; i < qtdNiveis; i++) {
+        if (tituloNivel[i].value.length < 10) {
+            alert(`O título do nível ${i + 1} precisa ter mais de 10 caracteres`);
+            flag = 1;
+            break;
+        } else if (porcentagemMinimaDeAcerto[i].value < 0 || porcentagemMinimaDeAcerto[i].value > 100 || porcentagemMinimaDeAcerto[i].value === "") {
+            alert(`A porcentagem mínima de acerto do nível ${i + 1} precisa estar entre 0 e 100`);
+            flag = 1;
+            break;
+        } else if (isURL(urlDaImagemDoNivel[i].value) == false) {
+            alert(`A URL da imagem do nível ${i + 1} precisa ser uma URL válida`);
+            flag = 1;
+            break;
+        } else if (descricaoDoNivel[i].value.length < 30) {
+            alert(`A descrição do nível ${i + 1} precisa ter no mínimo 30 caracteres`);
+            flag = 1;
+            break;
+        } 
+    }
+
+    let flag2 = 0;
+    for (let i = 0; i < qtdNiveis; i++) {
+        if (porcentagemMinimaDeAcerto[i].value == 0) {
+            flag2 = 0;
+            break;
+        } else {
+            flag2 = 2;
+        }
+    }
+
+    if (flag2 === 2) {
+        alert(`Pelo menos um dos níveis precisa ter % mínima de acerto igual a 0`);
+    }
+
+    if (flag === 0 && flag2 === 0) {
+        criarQuizz();
+    }
+}   
+
+function criarQuizz() {
+    /* console.log (`qtdPerguntas = ${qtdPerguntas};
+    let qtdNiveis = ${qtdNiveis};
+    let tituloQuizz = ${tituloQuizz};
+    let urlImagem = ${urlImagem};
+    let txtPergunta = ${txtPergunta};
+    let corDeFundo = ${corDeFundo};
+    let respostaCorreta = ${respostaCorreta};
+    let urlDaImagemCorreta = ${urlDaImagemCorreta};
+    let respostaIncorreta = ${respostaIncorreta};
+    let urlDaImagemIncorreta = ${urlDaImagemIncorreta};
+    let tituloNivel = ${tituloNivel};
+    let porcentagemMinimaDeAcerto = ${porcentagemMinimaDeAcerto};
+    let urlDaImagemDoNivel = ${urlDaImagemDoNivel};
+    let descricaoDoNivel = ${descricaoDoNivel};`); */
+    
+    console.log(object);
 }
 
 function isURL(string) {
