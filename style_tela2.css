@@ -11,3 +11,17 @@
 .spacer p {
     color: white;
 }
+
+.bannerQuizz {
+    background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(255,0,0,0));
+    height: 227px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.esconder {
+    display: none;
+}
