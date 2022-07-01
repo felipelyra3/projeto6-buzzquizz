@@ -1,5 +1,5 @@
 .spacer {
-    margin-top: 800px;
+    margin-top: 2000px;
     width: 100%;
     background-color: purple;
     height: 150px;
@@ -41,6 +41,8 @@
     color: #FFFFFF;
 }
 
+
+
 .boxPergunta {
     height: 676px;
     width: 759px;
@@ -48,21 +50,23 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     margin-top: 42px;
     padding: 36px;
+    display: flex;
     box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
     /* criar ul - li e usar o flex - row + wrap */
     
 }
 
 
-
 .tituloPergunta {
-    background-color: purple;
     height: 138px;
     width: 688px;
-    color: blue;
-    display: block;
-    
-    
+    color: #FFFFFF;
+    line-height: 138px;
+    text-align: center;
+
 }
 
 .esconder {

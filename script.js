@@ -70,7 +70,7 @@ let object = {
 //Chamar as funções - COMENTAR AQUI
 //comecePeloComeco();
 //crieSuasPerguntas();
-agoraDecidaOsNiveis();
+// agoraDecidaOsNiveis();
 //criarQuizz();
 
 //Primeira Tela
