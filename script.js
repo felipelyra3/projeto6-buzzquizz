@@ -1,6 +1,7 @@
 //Variáveis Globais
 let qtdPerguntas = 3;
 let qtdNiveis = 2;
+let ids = [];
 let tituloQuizz = "";
 let urlImagem = "";
 let txtPergunta = "";
@@ -13,7 +14,7 @@ let tituloNivel = "";
 let porcentagemMinimaDeAcerto = "";
 let urlDaImagemDoNivel = "";
 let descricaoDoNivel = "";
-/* let object = {
+let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
     questions: [
@@ -52,9 +53,9 @@ let descricaoDoNivel = "";
         }
     ],
     levels: []
-} */
+}
 
-let object = {
+/* let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
     questions: [
@@ -121,13 +122,13 @@ let object = {
             minValue: 50
         }
     ]
-}
+} */
 
 /* Chamar as funções - COMENTAR AQUI */
-//comecePeloComeco();
+comecePeloComeco();
 //crieSuasPerguntas();
 //agoraDecidaOsNiveis();
-criarQuizz();
+//criarQuizz();
 
 //Primeira Tela
 function comecePeloComeco() {
@@ -357,7 +358,7 @@ function criarQuizz() {
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', object);
     promise.then(sucessoCriarQuizz);
-    promise.catch()
+    promise.catch(erroCriarQuizz);
 }
 
 function sucessoCriarQuizz(request) {
@@ -365,6 +366,19 @@ function sucessoCriarQuizz(request) {
     if (statusCode === 201 || statusCode === 200) {
         console.log(`${statusCode} - Sucesso`);
         console.log(request);
+
+        if (localStorage.getItem("id") === null) {
+            let b = [];
+            b.push(request.data.id);
+            localStorage.setItem("id", JSON.stringify(b));
+        } else {
+            let a = localStorage.getItem("id");
+            a = JSON.parse(a);
+            a.push(request.data.id);
+            localStorage.setItem("id", JSON.stringify(a));
+            console.log(a + " " + typeof(a));
+        }
+
         seuQuizzEstaPronto();
     }
 }
@@ -417,6 +431,7 @@ function chamaTela2() {
 
 function voltarParaHome() {
     console.log('voltarParaHome()');
+    agoraDecidaOsNiveis();
 }
 
 function isURL(string) {
