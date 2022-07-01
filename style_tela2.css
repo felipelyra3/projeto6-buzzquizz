@@ -134,3 +134,23 @@ color: #FF4B4B;
     margin-top: 18px;
     
 }
+
+.reiniciarQuizz {
+    background: #EC362D;
+    border-radius: 15px;
+    width: 260.38px;
+    height: 52px;
+    color: #FFF5F4;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 52px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.voltarHome {
+    color: #818181;
+    font-size: 21px;
+    font-weight: 400;
+    margin-bottom: 85px;
+}
