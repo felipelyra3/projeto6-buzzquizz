@@ -13,7 +13,7 @@ let tituloNivel = "";
 let porcentagemMinimaDeAcerto = "";
 let urlDaImagemDoNivel = "";
 let descricaoDoNivel = "";
-let object = {
+/* let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
     questions: [
@@ -52,9 +52,9 @@ let object = {
         }
     ],
     levels: []
-}
+} */
 
-/* let object = {
+let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
     questions: [
@@ -121,13 +121,13 @@ let object = {
             minValue: 50
         }
     ]
-} */
+}
 
-//Chamar as funções - COMENTAR AQUI
-comecePeloComeco();
+/* Chamar as funções - COMENTAR AQUI */
+//comecePeloComeco();
 //crieSuasPerguntas();
 //agoraDecidaOsNiveis();
-//criarQuizz();
+criarQuizz();
 
 //Primeira Tela
 function comecePeloComeco() {
@@ -365,6 +365,7 @@ function sucessoCriarQuizz(request) {
     if (statusCode === 201 || statusCode === 200) {
         console.log(`${statusCode} - Sucesso`);
         console.log(request);
+        seuQuizzEstaPronto();
     }
 }
 
@@ -388,6 +389,34 @@ function erroCriarQuizz(request) {
     } else {
         console.log(`${statusCode}: Erro desconhecido`);
     }
+}
+
+function seuQuizzEstaPronto() {
+    const terceiraTela = document.querySelector('.terceiraTela');
+    let text = "";
+    text += `<h1>Seu Quizz está pronto!</h1>
+    <div class="imagemDoQuizz">
+        <img src="${object.image}" alt="" srcset="">
+        <div class="legendaQuizz">
+            <p>${object.title}</p>
+        </div>
+    </div>
+    <div class="center seuQuizzEstaPronto">
+        <div class="botaoCriarPerguntas botaoAcessarQuizz" onclick="chamaTela2()">
+            <h1>Acessar Quizz</h1>
+        </div>
+        <h2 onclick="voltarParaHome()">Voltar Home</h2>
+    </div>`;
+
+    terceiraTela.innerHTML = text;
+}
+
+function chamaTela2() {
+    console.log(`chamaTela2()`);
+}
+
+function voltarParaHome() {
+    console.log('voltarParaHome()');
 }
 
 function isURL(string) {

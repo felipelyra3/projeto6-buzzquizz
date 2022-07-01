@@ -158,11 +158,66 @@ body {
     width: 100%;
 }
 
+.imagemDoQuizz {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.imagemDoQuizz img {
+    width: 340px;
+    height: 181px;
+    border-radius: 5px;
+}
+
+.legendaQuizz {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #FFFFFF;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    position: absolute;
+    top: 155px;
+    left: 12px;
+}
+
+.botaoAcessarQuizz {
+    width: 219.64px;
+    height: 44px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFF5F4;
+}
+
+.seuQuizzEstaPronto {
+    display: flex;
+    flex-direction: column;
+}
+
+.seuQuizzEstaPronto h2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #818181;
+    margin-top: 12px;
+}
+
 
 /* RESOLUÇÃO PARA MOBILE - MÁXIMA DE 1100px */
 @media (max-width: 110px) {
-    .terceiraTela {
-    }
+    .terceiraTela {}
 
     .conteinerInputs {
         width: 100vh;
