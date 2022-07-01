@@ -51,6 +51,62 @@ let object = {
             ]
         }
     ],
+    levels: []
+}
+
+/* let object = {
+    title: "Título do quizz",
+    image: "https://http.cat/411.jpg",
+    questions: [
+        {
+            title: "Título da pergunta 1",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 2",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 3",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        }
+    ],
     levels: [
         {
             title: "Título do nível 1",
@@ -65,12 +121,12 @@ let object = {
             minValue: 50
         }
     ]
-}
+} */
 
 //Chamar as funções - COMENTAR AQUI
-//comecePeloComeco();
+comecePeloComeco();
 //crieSuasPerguntas();
-// agoraDecidaOsNiveis();
+//agoraDecidaOsNiveis();
 //criarQuizz();
 
 //Primeira Tela
@@ -185,22 +241,25 @@ function validaCrieSuasPerguntas() {
             break;
         }
 
-        object.questions[i].title = txtPergunta[i].value;
-        object.questions[i].color = corDeFundo[i].value;
-        object.questions[i].answers[0].text = respostaCorreta[i].value;
-        object.questions[i].answers[0].image = urlDaImagemCorreta[i].value;
-        object.questions[i].answers[0].isCorrectAnswer = true;
-
-        for (let z = 0; z < qtdPerguntas; z++) {
-            object.questions[i].answers.push({text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false});
-            //console.log(i + " " + a);
-            a++;
-        }
 
         y = y + 3;
     }
 
     if (flag === 0) {
+        for (let i = 0; i < qtdPerguntas; i++) {
+            object.questions[i].title = txtPergunta[i].value;
+            object.questions[i].color = corDeFundo[i].value;
+            object.questions[i].answers[0].text = respostaCorreta[i + 1].value;
+            object.questions[i].answers[0].image = urlDaImagemCorreta[i].value;
+            object.questions[i].answers[0].isCorrectAnswer = true;
+            
+            for (let z = 0; z < qtdPerguntas; z++) {
+                if (respostaIncorreta[a].value != '') {
+                    object.questions[i].answers.push({ text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false });
+                }
+                a++;
+            }
+        }
         agoraDecidaOsNiveis();
     }
 }
@@ -235,9 +294,10 @@ function verificaAgoraDecidaOsNiveis() {
     descricaoDoNivel = document.querySelectorAll('.descricaoDoNivel');
 
     let flag = 0;
+    numberPorcentagemMinimaDeAcerto = [];
 
     for (let i = 0; i < qtdNiveis; i++) {
-        /* if (tituloNivel[i].value.length < 10) {
+        if (tituloNivel[i].value.length < 10) {
             alert(`O título do nível ${i + 1} precisa ter mais de 10 caracteres`);
             flag = 1;
             break;
@@ -253,13 +313,11 @@ function verificaAgoraDecidaOsNiveis() {
             alert(`A descrição do nível ${i + 1} precisa ter no mínimo 30 caracteres`);
             flag = 1;
             break;
-        } */
+        }
 
-        Number(porcentagemMinimaDeAcerto[i].value);
-        console.log(typeof(porcentagemMinimaDeAcerto[i].value));
+        numberPorcentagemMinimaDeAcerto[i] = Number(porcentagemMinimaDeAcerto[i].value);
 
-        //object.levels.push();
-
+        object.levels.push({ title: tituloNivel[i].value, image: urlDaImagemDoNivel[i].value, text: descricaoDoNivel[i].value, minValue: numberPorcentagemMinimaDeAcerto[i] });
     }
 
     let flag2 = 0;
@@ -297,7 +355,39 @@ function criarQuizz() {
     let urlDaImagemDoNivel = ${urlDaImagemDoNivel};
     let descricaoDoNivel = ${descricaoDoNivel};`); */
 
-    console.log(object);
+    const promise = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', object);
+    promise.then(sucessoCriarQuizz);
+    promise.catch()
+}
+
+function sucessoCriarQuizz(request) {
+    const statusCode = request.status;
+    if (statusCode === 201 || statusCode === 200) {
+        console.log(`${statusCode} - Sucesso`);
+        console.log(request);
+    }
+}
+
+function erroCriarQuizz(request) {
+    const statusCode = request.status;
+    console.log(statusCode);
+    if (statusCode === 422) {
+        console.log(`${statusCode}: Unprocessable Entity => Significa que a requisição enviada não está no formato esperado`);
+    } else if (statusCode === 301) {
+        console.log(`${statusCode}: Moved Permanently => Significa que o recurso que você está tentando acessar foi movido pra outra URL`);
+    } else if (statusCode === 401) {
+        console.log(`${statusCode}: Unauthorized => Significa que você não tem acesso a esse recurso`);
+    } else if (statusCode === 404) {
+        console.log(`${statusCode}: Not Found => Significa que o recurso pedido não existe`);
+    } else if (statusCode === 409) {
+        console.log(`${statusCode}: Conflict => Significa que o recurso que você está tentando inserir já foi inserido`);
+    } else if (statusCode === 422) {
+        console.log(`${statusCode}: Unprocessable Entity => Significa que a requisição enviada não está no formato esperado`);
+    } else if (statusCode === 500) {
+        console.log(`${statusCode}: Internal Server Error => Significa que ocorreu algum erro desconhecido no servidor`);
+    } else {
+        console.log(`${statusCode}: Erro desconhecido`);
+    }
 }
 
 function isURL(string) {
