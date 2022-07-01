@@ -55,7 +55,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* criar ul - li e usar o flex - row + wrap */
+    
     
 }
 
@@ -71,4 +71,17 @@
 
 .esconder {
     display: none;
+}
+
+.respostaCorreta p{
+color: #009C22;
+}
+
+.respostaErrada {
+    opacity: 0.3;
+}
+
+.respostaErrada p{
+
+color: #FF4B4B;
 }
