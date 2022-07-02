@@ -162,11 +162,11 @@ let object2 = {
 
 /* Chamar as funções - COMENTAR AQUI */
 //1
-//telaInicialRequest();
+telaInicialRequest();
 
 //3
 //comecePeloComeco();
-crieSuasPerguntas();
+//crieSuasPerguntas();
 //agoraDecidaOsNiveis();
 //criarQuizz();
 
@@ -184,9 +184,6 @@ function teste(request) {
 function telaInicial(request) {
     const terceiraTela = document.querySelector('.terceiraTela');
     let text = ``;
-
-    console.log(`Deu certo`);
-    console.log(request);
 
     let dados = request;
     //teste(dados);
@@ -420,8 +417,7 @@ function validaCrieSuasPerguntas() {
                 a++;
             }
         }
-        console.log(object);
-        //agoraDecidaOsNiveis();
+        agoraDecidaOsNiveis();
     }
 }
 
