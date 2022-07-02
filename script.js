@@ -656,6 +656,7 @@ function renderizarPerguntas(posicao){
     let request = requisicao;
 
    console.log(request.data[position].title);
+   console.log(request.data[position].questions);
 
    const segundaTela = document.querySelector(".segundaTela");
    segundaTela.innerHTML="";
@@ -663,10 +664,30 @@ function renderizarPerguntas(posicao){
    segundaTela.innerHTML = `
    <div class="bannerQuizz">
             <p>${request.data[position].title}</p>
-        </div>
-   
+        </div>        
    `
+   let todasPerguntas = request.data[position].questions;
+    
    
 
+   console.log(teste);
+   
+   for (let i = 0; i < todasPerguntas.length; i++) {
+    
+    let tituloPergunta = todasPerguntas[i].title;
+    let corPergunta = todasPerguntas[i].color;
+    
+
+    segundaTela.innerHTML += `
+    <div class="cardPergunta">
+
+    <ul class="boxPergunta">
+        <p class="tituloPergunta" style="background-color:${corPergunta}">${tituloPergunta}</p>
+           
+    ` 
+}
+   
+
+   
 
  }
