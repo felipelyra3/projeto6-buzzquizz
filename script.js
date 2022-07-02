@@ -171,7 +171,7 @@ telaInicialRequest();
 //criarQuizz();
 
 function telaInicialRequest() {
-    const request = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    const request = axios.get('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes');
     request.then(telaInicial);
     request.catch(telaInicialErro);
 }
@@ -515,7 +515,7 @@ function criarQuizz() {
     let urlDaImagemDoNivel = ${urlDaImagemDoNivel};
     let descricaoDoNivel = ${descricaoDoNivel};`); */
 
-    const promise = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', object);
+    const promise = axios.post('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes', object);
     promise.then(sucessoCriarQuizz);
     promise.catch(erroCriarQuizz);
 }
@@ -623,7 +623,7 @@ function renderizarPerguntas(posicao){
 
     terceiraTela.innerHTML= "";
 
-    const request = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    const request = axios.get('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes');
     request.then(sucessoRenderiza);
 
 
@@ -676,15 +676,36 @@ function renderizarPerguntas(posicao){
     
     let tituloPergunta = todasPerguntas[i].title;
     let corPergunta = todasPerguntas[i].color;
-    
+    let todasRespostas = todasPerguntas[i].answers;
 
-    segundaTela.innerHTML += `
+    console.log(todasRespostas);
+
+    for (let i = 0; i < todasRespostas.length; i++) {
+
+    let todasImagens = todasRespostas[i].image;
+    let descricaoResposta = todasRespostas[i].text;
+
+
+    console.log(todasImagens);
+
+    let liImages =  `
     <div class="cardPergunta">
 
     <ul class="boxPergunta">
         <p class="tituloPergunta" style="background-color:${corPergunta}">${tituloPergunta}</p>
-           
+        
+
+        <li class="cardResposta" >
+        <img src=${todasImagens}/>
+        <p class="resposta">${descricaoResposta}</p>
+    </li>
+    </ul>
     ` 
+    segundaTela.innerHTML += liImages;
+
+    }
+    
+    
 }
    
 
