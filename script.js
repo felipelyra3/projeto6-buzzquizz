@@ -210,12 +210,21 @@ function telaInicialRequest() {
     request.catch(telaInicialErro);
 }
 
+function teste(request) {
+    console.log(`entrou no teste`);
+    console.log(request);
+}
+
 function telaInicial(request) {
     const terceiraTela = document.querySelector('.terceiraTela');
     let text = ``;
 
     console.log(`Deu certo`);
     console.log(request);
+
+    let dados = request;
+    //teste(dados);
+    renderizarPerguntas(dados);
 
     //Se não crigou nenhum Quizz
     if (localStorage.getItem("id") === null) {
@@ -239,8 +248,8 @@ function telaInicial(request) {
 
         for (let i = 0; i < 50; i++) {
             for (let j = 0; j < a.length; j++) {
-                if (request.data[i].id === a[j]) {
-                    text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
+                if (dados.data[i].id === a[j]) {
+                    text += `<img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
                     /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
                     /* onclick="tela2(request.data[i])"; */
                 }
@@ -259,7 +268,7 @@ function telaInicial(request) {
 
     for (let i = 0; i < 3; i++) {
         text += `
-        <img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
+        <img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
         
@@ -272,7 +281,7 @@ function telaInicial(request) {
     <div class="todosOsQuizzesBlocos">`;
 
     for (let i = 3; i < 6; i++) {
-        text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
+        text += `<img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
 
@@ -642,28 +651,18 @@ const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
 
 
 
+
 function renderizarPerguntas(object2){
-    console.log("Renderizando perguntas");
-    // console.log(object2);
+     
+console.log(object2.questions);
 
-    let umaPergunta = object2.questions;
-    
+const telaInteira = document.querySelector(".telaInteira");
+const tituloPergunta = object2.title;
 
-   tituloPergunta = object2.title;
+console.log(tituloPergunta);
 
-const segundaTela = document.querySelector(".segundaTela");
-segundaTela.innerHTML="";
-segundaTela.innerHTML += `
-<div class="bannerQuizz">
-<p>${tituloPergunta}</p>
- </div>
 
-`
-for (let i = 0; i < umaPergunta.length; i++) {
 
-    let tituloUmaPergunta = umaPergunta[i].title;
-    console.log(tituloUmaPergunta);
-    
-}
+
 }
 
