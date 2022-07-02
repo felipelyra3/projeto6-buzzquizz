@@ -663,8 +663,16 @@ function renderizarPerguntas(posicao){
 
    console.log(request.data[position].title);
 
-
-
+   const segundaTela = document.querySelector(".segundaTela");
+   segundaTela.innerHTML="";
+   
+   segundaTela.innerHTML = `
+   <div class="bannerQuizz">
+            <p>${request.data[position].title}</p>
+        </div>
+   
+   `
+   
 
 
  }
