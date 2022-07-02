@@ -75,12 +75,21 @@
 color: #009C22;
 }
 
+.certa {
+
+  opacity: 0.3;
+}
+
 .respostaErrada {
     opacity: 0.3;
 }
 
 .respostaErrada p{
 color: #FF4B4B;
+}
+
+.errou {
+    color: #FF4B4B;
 }
 
 .resultado {
