@@ -1,5 +1,5 @@
 let perguntas; 
-
+let questions;
 
 //Pegar as perguntas do servidor - ETAPA 1
 function buscarPerguntas(){
@@ -21,15 +21,37 @@ if (resposta.status === 200){
     console.log("O get deu certo");
 }
 
-receitas = resposta.data;
+perguntas = resposta.data;
 renderizarPerguntas();
 
 }
 
-//Itera sobre o array de perguntas e coloca cada receita no DOM - ETAPA 3
+//Itera sobre o array de perguntas e coloca a página no DOM - ETAPA 3
 
 function renderizarPerguntas(){
     console.log("Renderizando perguntas")
 
-    const ulPerguntas = document.querySelector(".pergunta")
+    const segundaTela = document.querySelector(".segundaTela");
+    segundaTela.innerHTML="";
+
+    questions = resposta.questions;
+
+    for (let i = 0; i < perguntas.length; i++) {
+        segundaTela.innerHTML += `
+        <div class="bannerQuizz">
+        <p>${perguntas[i].title}</p>
+    </div>
+    <div class="cardPergunta">
+
+    <ul class="boxPergunta">
+        <p class="tituloPergunta" style="background-color:purple">${perguntas[i].questions[i].title}</p>
+        <li class="cardResposta respostaCorreta" >
+            <img src="./img/image 3.png" />
+            <p class="resposta">Gatíneo</p>
+        </li>
+        </ul>
+
+
+        `
+    }
 }
