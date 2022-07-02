@@ -55,6 +55,75 @@ let object = {
     levels: []
 }
 
+let object2 = {
+    title: "Título do quizz",
+    image: "https://http.cat/411.jpg",
+    questions: [
+        {
+            title: "Título da pergunta 1",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 2",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 3",
+            color: "#123456",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        }
+    ],
+    levels: [
+        {
+            title: "Título do nível 1",
+            image: "https://http.cat/411.jpg",
+            text: "Descrição do nível 1",
+            minValue: 0
+        },
+        {
+            title: "Título do nível 2",
+            image: "https://http.cat/412.jpg",
+            text: "Descrição do nível 2",
+            minValue: 50
+        }
+    ]
+}
+
 /* let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
@@ -130,11 +199,7 @@ telaInicialRequest();
 
 //3
 //comecePeloComeco();
-<<<<<<< HEAD
-//crieSuasPerguntas();
-=======
 // crieSuasPerguntas();
->>>>>>> 47e923fc6d3486007d058df162676096b6733cef
 //agoraDecidaOsNiveis();
 //criarQuizz();
 
@@ -174,7 +239,7 @@ function telaInicial(request) {
         for (let i = 0; i < 50; i++) {
             for (let j = 0; j < a.length; j++) {
                 if (request.data[i].id === a[j]) {
-                    text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="">`;
+                    text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas()">`;
                     /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
                     /* onclick="tela2(request.data[i])"; */
                 }
@@ -193,7 +258,7 @@ function telaInicial(request) {
 
     for (let i = 0; i < 3; i++) {
         text += `
-        <img src="${request.data[i].image}" alt="" srcset="" onclick="">`;
+        <img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas()">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
         
@@ -206,7 +271,7 @@ function telaInicial(request) {
     <div class="todosOsQuizzesBlocos">`;
 
     for (let i = 3; i < 6; i++) {
-        text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="">`;
+        text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas()">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
 
@@ -575,8 +640,8 @@ const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
 //JS TELA 2
 
 function renderizarPerguntas(request){
-    console.log(request)
-    console.log("Renderizando perguntas")
+    console.log(object2);
+    console.log("Renderizando perguntas");
 
 //     const segundaTela = document.querySelector(".segundaTela");
 //     segundaTela.innerHTML="";
