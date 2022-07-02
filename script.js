@@ -14,6 +14,7 @@ let tituloNivel = "";
 let porcentagemMinimaDeAcerto = "";
 let urlDaImagemDoNivel = "";
 let descricaoDoNivel = "";
+let position = 0;
 let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
@@ -189,7 +190,7 @@ function telaInicial(request) {
 
     let dados = request;
     //teste(dados);
-    renderizarPerguntas(dados);
+    
 
     //Se não crigou nenhum Quizz
     if (localStorage.getItem("id") === null) {
@@ -236,7 +237,7 @@ function telaInicial(request) {
         <img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(${i})">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
-        
+
     }
 
     text += `</div>
@@ -334,7 +335,7 @@ function crieSuasPerguntas() {
         <div class="escondido">
             <input type="text" placeholder="Texto da pergunta" name="txtPergunta" class="txtPergunta" id="">
             <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" class="corDeFundo" id="">
-            
+
             <h1>Resposta Correta</h1>
             <input type="text" placeholder="Resposta correta" name="respostaCorretaa" class="respostaCorretaa" id="">
             <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" class="urlDaImagemCorreta" id="">
@@ -622,6 +623,15 @@ const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
 function renderizarPerguntas(posicao){
     console.log("Renderizando perguntas");
     console.log(posicao);
+    position = posicao;
+
+    const terceiraTela = document.querySelector(".terceiraTela");
+
+    terceiraTela.innerHTML= "";
+
+    const request = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    request.then(sucessoRenderiza);
+
 
 //     const segundaTela = document.querySelector(".segundaTela");
 //     segundaTela.innerHTML="";
@@ -644,4 +654,17 @@ function renderizarPerguntas(posicao){
 
 //         `
 //     }
+ }
+
+ function sucessoRenderiza(requisicao){
+    // console.log(request.data[position]);
+
+    let request = requisicao;
+
+   console.log(request.data[position].title);
+
+
+
+
+
  }
