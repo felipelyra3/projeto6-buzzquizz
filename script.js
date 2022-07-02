@@ -1,6 +1,6 @@
 //Variáveis Globais
-let qtdPerguntas = 4;
-let qtdNiveis = 3;
+let qtdPerguntas = 3;
+let qtdNiveis = 2;
 let ids = [];
 let tituloQuizz = "";
 let urlImagem = "";
@@ -162,11 +162,11 @@ let object2 = {
 
 /* Chamar as funções - COMENTAR AQUI */
 //1
-//telaInicialRequest();
+telaInicialRequest();
 
 //3
 //comecePeloComeco();
-crieSuasPerguntas();
+//crieSuasPerguntas();
 //agoraDecidaOsNiveis();
 //criarQuizz();
 
@@ -184,9 +184,6 @@ function teste(request) {
 function telaInicial(request) {
     const terceiraTela = document.querySelector('.terceiraTela');
     let text = ``;
-
-    console.log(`Deu certo`);
-    console.log(request);
 
     let dados = request;
     //teste(dados);
@@ -372,7 +369,7 @@ function validaCrieSuasPerguntas() {
     let flag = 0;
     for (let i = 0; i < qtdPerguntas; i++) {
         flag = 0;
-        /* if (txtPergunta[i].value.length < 20) {
+        if (txtPergunta[i].value.length < 20) {
             alert(`O texto da pergunta ${i + 1} deve ter no mínimo 20 caracteres`);
             flag = 1;
             break;
@@ -396,7 +393,7 @@ function validaCrieSuasPerguntas() {
             alert(`A URL da resposta incorreta da pergunta ${i + 1} precisa ser válida`);
             flag = 1;
             break;
-        } */
+        }
         y = y + 3;
     }
 
@@ -408,22 +405,19 @@ function validaCrieSuasPerguntas() {
             object.questions[i].answers[0].image = urlDaImagemCorreta[i].value;
             object.questions[i].answers[0].isCorrectAnswer = true; */
            
-            console.log(respostaCorreta[i].value);
             object.questions.push({title: txtPergunta[i].value, color: corDeFundo[i].value, answers: [{text: respostaCorreta[i].value, image: urlDaImagemCorreta[i].value, isCorrectAnswer: true}]});
             //object.questions.push({answers: [{}]});
             //object.questions[i].answers.push({teste: "aa"});
             
             for (let z = 0; z < 3; z++) {
-                if (respostaIncorreta[0].value != '') {
+                if (respostaIncorreta[a].value !== '') {
                     //object.questions[i].answers.push({ text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false });
                     object.questions[i].answers.push({text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false});
                 }
-                console.log("a " + a);
                 a++;
             }
         }
-        console.log(object);
-        //agoraDecidaOsNiveis();
+        agoraDecidaOsNiveis();
     }
 }
 
