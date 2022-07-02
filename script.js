@@ -130,7 +130,11 @@ telaInicialRequest();
 
 //3
 //comecePeloComeco();
+<<<<<<< HEAD
 //crieSuasPerguntas();
+=======
+// crieSuasPerguntas();
+>>>>>>> 47e923fc6d3486007d058df162676096b6733cef
 //agoraDecidaOsNiveis();
 //criarQuizz();
 
@@ -180,6 +184,7 @@ function telaInicial(request) {
         text += `</div></div>
     </div>`;
     }
+
 
     //Todos os Quizzes
     text += `<div class="todosOsQuizzes">
@@ -564,3 +569,34 @@ function isURL(string) {
 }
 
 const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
+
+
+
+//JS TELA 2
+
+function renderizarPerguntas(request){
+    console.log(request)
+    console.log("Renderizando perguntas")
+
+//     const segundaTela = document.querySelector(".segundaTela");
+//     segundaTela.innerHTML="";
+
+//     for (let i = 0; i < perguntas.length; i++) {
+//         segundaTela.innerHTML += `
+//         <div class="bannerQuizz">
+//         <p>${perguntas[i].title}</p>
+//     </div>
+//     <div class="cardPergunta">
+
+//     <ul class="boxPergunta">
+//         <p class="tituloPergunta" style="background-color:purple">${request.data[i].title}</p>
+//         <li class="cardResposta respostaCorreta" >
+//             <img src="./img/image 3.png" />
+//             <p class="resposta">Gatíneo</p>
+//         </li>
+//         </ul>
+
+
+//         `
+//     }
+ }
