@@ -214,6 +214,128 @@ body {
     margin-top: 12px;
 }
 
+.voceNaoCriouNenhumQuizzAinda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1051px;
+    height: 181px;
+    background: #FAFAFA;
+    border: 2px dashed #D5D5D5;
+    border-radius: 5px;
+}
+
+.voceNaoCriouNenhumQuizzAinda h1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #B9B9B9;
+}
+
+.botaoCriarQuizz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 151px;
+    height: 40px;
+    background: #FAFAFA;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #EC362D;
+    margin-top: 12px;
+}
+
+.todosOsQuizzes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 1051px;
+    margin-top: 5px;
+    padding: 0px 0px 12px 0px;
+    position: relative;
+}
+
+.todosOsQuizzes h1 {
+    margin-bottom: 12px;
+    padding-left: 20px;
+    margin-top: 50px;
+}
+
+.todosOsQuizzesBlocos img {
+    width: 300px;
+    height: 141px;
+    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(image.png); */
+    border-radius: 5px;
+    margin-top: 0px;
+}
+
+.legendaQuizzTela1 {
+    position: absolute;
+    top: 1px;
+    left: 2px;
+}
+
+.todosOsQuizzesBlocos {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 1051px;
+}
+
+.seusQuizzesTextoMaisBotao {
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+.seusQuizzesTextoMaisBotao h1 {
+    margin-right: 12px;
+    margin-bottom: -10px;
+    padding-left: 20px;
+}
+
+.seusQuizzesTextoMaisBotao ion-icon {
+    color: red;
+    font-size: 30px;
+    margin-bottom: -25px;
+}
+
+.seusQuizzesImagens {
+    justify-content: flex-start;
+    height: 180px;
+    margin-left: 0px;
+    overflow-x: scroll;
+    width: 1051px;
+}
+
+.seusQuizzesImagens img {
+    padding: 0px 0px 0px 15px;
+    margin-top: 15px;
+}
 
 /* RESOLUÇÃO PARA MOBILE - MÁXIMA DE 1100px */
 @media (max-width: 110px) {

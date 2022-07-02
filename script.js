@@ -1,6 +1,6 @@
 //Variáveis Globais
-let qtdPerguntas = 3;
-let qtdNiveis = 2;
+let qtdPerguntas = 4;
+let qtdNiveis = 3;
 let ids = [];
 let tituloQuizz = "";
 let urlImagem = "";
@@ -125,12 +125,120 @@ let object = {
 } */
 
 /* Chamar as funções - COMENTAR AQUI */
-comecePeloComeco();
-//crieSuasPerguntas();
+//1
+//telaInicialRequest();
+
+//3
+//comecePeloComeco();
+crieSuasPerguntas();
 //agoraDecidaOsNiveis();
 //criarQuizz();
 
-//Primeira Tela
+function telaInicialRequest() {
+    const request = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    request.then(telaInicial);
+    request.catch(telaInicialErro);
+}
+
+function telaInicial(request) {
+    const terceiraTela = document.querySelector('.terceiraTela');
+    let text = ``;
+
+    console.log(`Deu certo`);
+    console.log(request);
+
+    //Se não crigou nenhum Quizz
+    if (localStorage.getItem("id") === null) {
+        text += `<div class="voceNaoCriouNenhumQuizzAinda">
+    <h1>Você não criou nenhum<br /> Quizz ainda :(</h1>
+    <div class="botaoCriarQuizz" onclick="comecePeloComeco()">Criar Quizz</div>
+</div>`;
+    } else {
+        //Se já criou algum quizz
+        let a = localStorage.getItem("id");
+        a = JSON.parse(a);
+        console.log("a = " + a[0]);
+        text += `<div class="seusQuizzes">
+        <div class="seusQuizzesTextoMaisBotao">
+            <h1>Seus Quizzes</h1>
+            <ion-icon name="add-circle" onclick="comecePeloComeco()"></ion-icon>
+        </div>
+        <div class="todosOsQuizzesBlocos">
+        <div class="seusQuizzesImagens">`;
+
+
+        for (let i = 0; i < 50; i++) {
+            for (let j = 0; j < a.length; j++) {
+                if (request.data[i].id === a[j]) {
+                    text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="">`;
+                    /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
+                    /* onclick="tela2(request.data[i])"; */
+                }
+            }
+        }
+
+        text += `</div></div>
+    </div>`;
+    }
+
+    //Todos os Quizzes
+    text += `<div class="todosOsQuizzes">
+    <h1>Todos os Quizzes</h1>
+    <div class="todosOsQuizzesBlocos">`;
+
+    for (let i = 0; i < 3; i++) {
+        text += `
+        <img src="${request.data[i].image}" alt="" srcset="" onclick="">`;
+        /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
+        /* onclick="tela2(request.data[i])"; */
+        
+    }
+
+    text += `</div>
+    </div>`;
+
+    text += `<div class="todosOsQuizzes">
+    <div class="todosOsQuizzesBlocos">`;
+
+    for (let i = 3; i < 6; i++) {
+        text += `<img src="${request.data[i].image}" alt="" srcset="">`;
+        /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
+        /* onclick="tela2(request.data[i])"; */
+
+        //Tentativa de fazer a legenda
+        /* text += `<div class="legendaQuizzTela1">
+        <p>${request.data[i].title}</p>
+    </div>`; */
+    }
+
+    text += `</div>
+    </div>`;
+
+
+    terceiraTela.innerHTML = text;
+}
+
+function telaInicialErro(request) {
+    if (statusCode === 422) {
+        console.log(`${statusCode}: Unprocessable Entity => Significa que a requisição enviada não está no formato esperado`);
+    } else if (statusCode === 301) {
+        console.log(`${statusCode}: Moved Permanently => Significa que o recurso que você está tentando acessar foi movido pra outra URL`);
+    } else if (statusCode === 401) {
+        console.log(`${statusCode}: Unauthorized => Significa que você não tem acesso a esse recurso`);
+    } else if (statusCode === 404) {
+        console.log(`${statusCode}: Not Found => Significa que o recurso pedido não existe`);
+    } else if (statusCode === 409) {
+        console.log(`${statusCode}: Conflict => Significa que o recurso que você está tentando inserir já foi inserido`);
+    } else if (statusCode === 422) {
+        console.log(`${statusCode}: Unprocessable Entity => Significa que a requisição enviada não está no formato esperado`);
+    } else if (statusCode === 500) {
+        console.log(`${statusCode}: Internal Server Error => Significa que ocorreu algum erro desconhecido no servidor`);
+    } else {
+        console.log(`${statusCode}: Erro desconhecido`);
+    }
+}
+
+//3.1
 function comecePeloComeco() {
     const terceiraTela = document.querySelector('.terceiraTela');
     terceiraTela.innerHTML = `<h1>Comece pelo começo</h1>
@@ -143,7 +251,7 @@ function comecePeloComeco() {
     <div class="botaoCriarPerguntas" onclick="verificaComecePeloComeco()"><h1>Prosseguir para criar perguntas</h1></div>`;
 }
 
-
+//3.1 verifica
 function verificaComecePeloComeco() {
     const terceiraTela = document.querySelector('.terceiraTela');
     tituloQuizz = document.querySelector('.conteinerInputs input[name="titulo"]').value;
@@ -168,6 +276,7 @@ function verificaComecePeloComeco() {
     }
 }
 
+//3.2
 function crieSuasPerguntas() {
     const terceiraTela = document.querySelector('.terceiraTela');
     let text = "";
@@ -203,6 +312,7 @@ function crieSuasPerguntas() {
     terceiraTela.innerHTML = text;
 }
 
+//3.2 verifica
 function validaCrieSuasPerguntas() {
     txtPergunta = document.querySelectorAll('.txtPergunta');
     corDeFundo = document.querySelectorAll('.corDeFundo');
@@ -216,7 +326,7 @@ function validaCrieSuasPerguntas() {
     let flag = 0;
     for (let i = 0; i < qtdPerguntas; i++) {
         flag = 0;
-        if(txtPergunta[i].value.length < 20) {
+        /* if (txtPergunta[i].value.length < 20) {
             alert(`O texto da pergunta ${i + 1} deve ter no mínimo 20 caracteres`);
             flag = 1;
             break;
@@ -236,13 +346,14 @@ function validaCrieSuasPerguntas() {
             alert(`A resposta incorreta da pergunta ${i + 1} não pode ficar em branco`);
             flag = 1;
             break;
-        } else if(isURL(urlDaImagemIncorreta[y].value) == false) {
+        } else if (isURL(urlDaImagemIncorreta[y].value) == false) {
             alert(`A URL da resposta incorreta da pergunta ${i + 1} precisa ser válida`);
             flag = 1;
             break;
-        }
+        } */
 
-
+        console.log(object);
+        //Hello
         y = y + 3;
     }
 
@@ -253,7 +364,7 @@ function validaCrieSuasPerguntas() {
             object.questions[i].answers[0].text = respostaCorreta[i + 1].value;
             object.questions[i].answers[0].image = urlDaImagemCorreta[i].value;
             object.questions[i].answers[0].isCorrectAnswer = true;
-            
+
             for (let z = 0; z < qtdPerguntas; z++) {
                 if (respostaIncorreta[a].value != '') {
                     object.questions[i].answers.push({ text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false });
@@ -265,6 +376,7 @@ function validaCrieSuasPerguntas() {
     }
 }
 
+//3.4
 function agoraDecidaOsNiveis() {
     //let qtdNiveis = 2;
     const terceiraTela = document.querySelector('.terceiraTela');
@@ -287,6 +399,7 @@ function agoraDecidaOsNiveis() {
     terceiraTela.innerHTML = text;
 }
 
+//3.4 verifica
 function verificaAgoraDecidaOsNiveis() {
     //let qtdNiveis = 2;
     tituloNivel = document.querySelectorAll('.tituloNivel');
@@ -340,6 +453,7 @@ function verificaAgoraDecidaOsNiveis() {
     }
 }
 
+//3.x cria o Post no Axios
 function criarQuizz() {
     /* console.log (`qtdPerguntas = ${qtdPerguntas};
     let qtdNiveis = ${qtdNiveis};
@@ -361,6 +475,7 @@ function criarQuizz() {
     promise.catch(erroCriarQuizz);
 }
 
+//3.x Caso tenha sucesso no Post do Axios
 function sucessoCriarQuizz(request) {
     const statusCode = request.status;
     if (statusCode === 201 || statusCode === 200) {
@@ -376,13 +491,14 @@ function sucessoCriarQuizz(request) {
             a = JSON.parse(a);
             a.push(request.data.id);
             localStorage.setItem("id", JSON.stringify(a));
-            console.log(a + " " + typeof(a));
+            console.log(a + " " + typeof (a));
         }
 
         seuQuizzEstaPronto();
     }
 }
 
+//3.x Caso dê erro no Post do Axios
 function erroCriarQuizz(request) {
     const statusCode = request.status;
     console.log(statusCode);
@@ -405,6 +521,7 @@ function erroCriarQuizz(request) {
     }
 }
 
+//3.4
 function seuQuizzEstaPronto() {
     const terceiraTela = document.querySelector('.terceiraTela');
     let text = "";
@@ -419,21 +536,24 @@ function seuQuizzEstaPronto() {
         <div class="botaoCriarPerguntas botaoAcessarQuizz" onclick="chamaTela2()">
             <h1>Acessar Quizz</h1>
         </div>
-        <h2 onclick="voltarParaHome()">Voltar Home</h2>
+        <h2 onclick="telaInicialRequest()">Voltar Home</h2>
     </div>`;
 
     terceiraTela.innerHTML = text;
 }
 
+//Chama a tela para exibir o Quizz que acabou de criar
 function chamaTela2() {
-    console.log(`chamaTela2()`);
+    console.log(`chamaTela2() - Exibir o Quizz que acabou de criar`);
 }
 
+//Volta para a tela de Home
 function voltarParaHome() {
     console.log('voltarParaHome()');
     agoraDecidaOsNiveis();
 }
 
+//Funções de verificação
 function isURL(string) {
     try {
         let url = new URL(string)
