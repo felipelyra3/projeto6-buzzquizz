@@ -126,11 +126,11 @@ let object = {
 
 /* Chamar as funções - COMENTAR AQUI */
 //1
-//telaInicialRequest();
+telaInicialRequest();
 
 //3
 //comecePeloComeco();
-crieSuasPerguntas();
+//crieSuasPerguntas();
 //agoraDecidaOsNiveis();
 //criarQuizz();
 
@@ -201,7 +201,7 @@ function telaInicial(request) {
     <div class="todosOsQuizzesBlocos">`;
 
     for (let i = 3; i < 6; i++) {
-        text += `<img src="${request.data[i].image}" alt="" srcset="">`;
+        text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
 
@@ -326,7 +326,7 @@ function validaCrieSuasPerguntas() {
     let flag = 0;
     for (let i = 0; i < qtdPerguntas; i++) {
         flag = 0;
-        /* if (txtPergunta[i].value.length < 20) {
+        if (txtPergunta[i].value.length < 20) {
             alert(`O texto da pergunta ${i + 1} deve ter no mínimo 20 caracteres`);
             flag = 1;
             break;
@@ -350,7 +350,7 @@ function validaCrieSuasPerguntas() {
             alert(`A URL da resposta incorreta da pergunta ${i + 1} precisa ser válida`);
             flag = 1;
             break;
-        } */
+        }
 
         console.log(object);
         //Hello
