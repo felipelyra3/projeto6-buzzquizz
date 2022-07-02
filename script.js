@@ -14,7 +14,7 @@ let tituloNivel = "";
 let porcentagemMinimaDeAcerto = "";
 let urlDaImagemDoNivel = "";
 let descricaoDoNivel = "";
-let tituloPergunta= "";
+let position = 0;
 let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
@@ -224,7 +224,7 @@ function telaInicial(request) {
 
     let dados = request;
     //teste(dados);
-    renderizarPerguntas(dados);
+    
 
     //Se não crigou nenhum Quizz
     if (localStorage.getItem("id") === null) {
@@ -249,7 +249,7 @@ function telaInicial(request) {
         for (let i = 0; i < 50; i++) {
             for (let j = 0; j < a.length; j++) {
                 if (dados.data[i].id === a[j]) {
-                    text += `<img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
+                    text += `<img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(${i})">`;
                     /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
                     /* onclick="tela2(request.data[i])"; */
                 }
@@ -268,10 +268,10 @@ function telaInicial(request) {
 
     for (let i = 0; i < 3; i++) {
         text += `
-        <img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
+        <img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(${i})">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
-        
+
     }
 
     text += `</div>
@@ -281,7 +281,7 @@ function telaInicial(request) {
     <div class="todosOsQuizzesBlocos">`;
 
     for (let i = 3; i < 6; i++) {
-        text += `<img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
+        text += `<img src="${dados.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(${i})">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
 
@@ -369,7 +369,7 @@ function crieSuasPerguntas() {
         <div class="escondido">
             <input type="text" placeholder="Texto da pergunta" name="txtPergunta" class="txtPergunta" id="">
             <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" class="corDeFundo" id="">
-            
+
             <h1>Resposta Correta</h1>
             <input type="text" placeholder="Resposta correta" name="respostaCorreta" class="respostaCorreta" id="">
             <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" class="urlDaImagemCorreta" id="">
@@ -649,20 +649,51 @@ const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
 
 //JS TELA 2
 
+function renderizarPerguntas(posicao){
+    console.log("Renderizando perguntas");
+    console.log(posicao);
+    position = posicao;
+
+    const terceiraTela = document.querySelector(".terceiraTela");
+
+    terceiraTela.innerHTML= "";
+
+    const request = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    request.then(sucessoRenderiza);
+
+
+//     const segundaTela = document.querySelector(".segundaTela");
+//     segundaTela.innerHTML="";
+
+//     for (let i = 0; i < perguntas.length; i++) {
+//         segundaTela.innerHTML += `
+//         <div class="bannerQuizz">
+//         <p>${perguntas[i].title}</p>
+//     </div>
+//     <div class="cardPergunta">
+
+//     <ul class="boxPergunta">
+//         <p class="tituloPergunta" style="background-color:purple">${request.data[i].title}</p>
+//         <li class="cardResposta respostaCorreta" >
+//             <img src="./img/image 3.png" />
+//             <p class="resposta">Gatíneo</p>
+//         </li>
+//         </ul>
+
+
+//         `
+//     }
+ }
+
+ function sucessoRenderiza(requisicao){
+    // console.log(request.data[position]);
+
+    let request = requisicao;
+
+   console.log(request.data[position].title);
 
 
 
-function renderizarPerguntas(object2){
-     
-console.log(object2.questions);
-
-const telaInteira = document.querySelector(".telaInteira");
-const tituloPergunta = object2.title;
-
-console.log(tituloPergunta);
 
 
-
-
-}
-
+ }
