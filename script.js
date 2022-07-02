@@ -17,41 +17,7 @@ let descricaoDoNivel = "";
 let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
-    questions: [
-        {
-            title: "Título da pergunta 1",
-            color: "#123456",
-            answers: [
-                {
-                    text: "Texto da resposta 1",
-                    image: "https://http.cat/411.jpg",
-                    isCorrectAnswer: true
-                }
-            ]
-        },
-        {
-            title: "Título da pergunta 2",
-            color: "#123456",
-            answers: [
-                {
-                    text: "Texto da resposta 1",
-                    image: "https://http.cat/411.jpg",
-                    isCorrectAnswer: true
-                }
-            ]
-        },
-        {
-            title: "Título da pergunta 3",
-            color: "#123456",
-            answers: [
-                {
-                    text: "Texto da resposta 1",
-                    image: "https://http.cat/411.jpg",
-                    isCorrectAnswer: true
-                }
-            ]
-        }
-    ],
+    questions: [],
     levels: []
 }
 
@@ -195,11 +161,11 @@ let object2 = {
 
 /* Chamar as funções - COMENTAR AQUI */
 //1
-telaInicialRequest();
+//telaInicialRequest();
 
 //3
 //comecePeloComeco();
-// crieSuasPerguntas();
+crieSuasPerguntas();
 //agoraDecidaOsNiveis();
 //criarQuizz();
 
@@ -370,7 +336,7 @@ function crieSuasPerguntas() {
             <input type="text" placeholder="Cor de fundo da pergunta" name="corDeFundo" class="corDeFundo" id="">
             
             <h1>Resposta Correta</h1>
-            <input type="text" placeholder="Resposta correta" name="respostaCorreta" class="respostaCorreta" id="">
+            <input type="text" placeholder="Resposta correta" name="respostaCorretaa" class="respostaCorretaa" id="">
             <input type="text" placeholder="URL da imagem correta" name="urlDaImagemCorreta" class="urlDaImagemCorreta" id="">
 
             <h1>Respostas Incorretas</h1>`;
@@ -395,7 +361,7 @@ function crieSuasPerguntas() {
 function validaCrieSuasPerguntas() {
     txtPergunta = document.querySelectorAll('.txtPergunta');
     corDeFundo = document.querySelectorAll('.corDeFundo');
-    respostaCorreta = document.querySelectorAll('.respostaCorreta');
+    respostaCorreta = document.querySelectorAll('.respostaCorretaa');
     urlDaImagemCorreta = document.querySelectorAll('.urlDaImagemCorreta');
     respostaIncorreta = document.querySelectorAll('.respostaIncorreta');
     urlDaImagemIncorreta = document.querySelectorAll('.urlDaImagemIncorreta');
@@ -405,7 +371,7 @@ function validaCrieSuasPerguntas() {
     let flag = 0;
     for (let i = 0; i < qtdPerguntas; i++) {
         flag = 0;
-        if (txtPergunta[i].value.length < 20) {
+        /* if (txtPergunta[i].value.length < 20) {
             alert(`O texto da pergunta ${i + 1} deve ter no mínimo 20 caracteres`);
             flag = 1;
             break;
@@ -429,29 +395,34 @@ function validaCrieSuasPerguntas() {
             alert(`A URL da resposta incorreta da pergunta ${i + 1} precisa ser válida`);
             flag = 1;
             break;
-        }
-
-        console.log(object);
-        //Hello
+        } */
         y = y + 3;
     }
 
     if (flag === 0) {
         for (let i = 0; i < qtdPerguntas; i++) {
-            object.questions[i].title = txtPergunta[i].value;
+            /* object.questions[i].title = txtPergunta[i].value;
             object.questions[i].color = corDeFundo[i].value;
             object.questions[i].answers[0].text = respostaCorreta[i + 1].value;
             object.questions[i].answers[0].image = urlDaImagemCorreta[i].value;
-            object.questions[i].answers[0].isCorrectAnswer = true;
-
-            for (let z = 0; z < qtdPerguntas; z++) {
-                if (respostaIncorreta[a].value != '') {
-                    object.questions[i].answers.push({ text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false });
+            object.questions[i].answers[0].isCorrectAnswer = true; */
+           
+            console.log(respostaCorreta[i].value);
+            object.questions.push({title: txtPergunta[i].value, color: corDeFundo[i].value, answers: [{text: respostaCorreta[i].value, image: urlDaImagemCorreta[i].value, isCorrectAnswer: true}]});
+            //object.questions.push({answers: [{}]});
+            //object.questions[i].answers.push({teste: "aa"});
+            
+            for (let z = 0; z < 3; z++) {
+                if (respostaIncorreta[0].value != '') {
+                    //object.questions[i].answers.push({ text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false });
+                    object.questions[i].answers.push({text: respostaIncorreta[a].value, image: urlDaImagemIncorreta[a].value, isCorrectAnswer: false});
                 }
+                console.log("a " + a);
                 a++;
             }
         }
-        agoraDecidaOsNiveis();
+        console.log(object);
+        //agoraDecidaOsNiveis();
     }
 }
 
