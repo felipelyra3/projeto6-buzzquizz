@@ -14,6 +14,7 @@ let tituloNivel = "";
 let porcentagemMinimaDeAcerto = "";
 let urlDaImagemDoNivel = "";
 let descricaoDoNivel = "";
+let tituloPergunta= "";
 let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
@@ -239,7 +240,7 @@ function telaInicial(request) {
         for (let i = 0; i < 50; i++) {
             for (let j = 0; j < a.length; j++) {
                 if (request.data[i].id === a[j]) {
-                    text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas()">`;
+                    text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
                     /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
                     /* onclick="tela2(request.data[i])"; */
                 }
@@ -258,7 +259,7 @@ function telaInicial(request) {
 
     for (let i = 0; i < 3; i++) {
         text += `
-        <img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas()">`;
+        <img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
         
@@ -271,7 +272,7 @@ function telaInicial(request) {
     <div class="todosOsQuizzesBlocos">`;
 
     for (let i = 3; i < 6; i++) {
-        text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas()">`;
+        text += `<img src="${request.data[i].image}" alt="" srcset="" onclick="renderizarPerguntas(object2)">`;
         /* ONCLICK AQUI TEM QUE IR PRA TELA 2, VAI RECEBER request.data[i] E EXIBIR ESSE QUIZZ */
         /* onclick="tela2(request.data[i])"; */
 
@@ -639,29 +640,30 @@ const isHex = color => /^#([0-9A-F]{6})$/i.test(color);
 
 //JS TELA 2
 
-function renderizarPerguntas(request){
-    console.log(object2);
+
+
+function renderizarPerguntas(object2){
     console.log("Renderizando perguntas");
+    // console.log(object2);
 
-//     const segundaTela = document.querySelector(".segundaTela");
-//     segundaTela.innerHTML="";
+    let umaPergunta = object2.questions;
+    
 
-//     for (let i = 0; i < perguntas.length; i++) {
-//         segundaTela.innerHTML += `
-//         <div class="bannerQuizz">
-//         <p>${perguntas[i].title}</p>
-//     </div>
-//     <div class="cardPergunta">
+   tituloPergunta = object2.title;
 
-//     <ul class="boxPergunta">
-//         <p class="tituloPergunta" style="background-color:purple">${request.data[i].title}</p>
-//         <li class="cardResposta respostaCorreta" >
-//             <img src="./img/image 3.png" />
-//             <p class="resposta">Gatíneo</p>
-//         </li>
-//         </ul>
+const segundaTela = document.querySelector(".segundaTela");
+segundaTela.innerHTML="";
+segundaTela.innerHTML += `
+<div class="bannerQuizz">
+<p>${tituloPergunta}</p>
+ </div>
 
+`
+for (let i = 0; i < umaPergunta.length; i++) {
 
-//         `
-//     }
- }
+    let tituloUmaPergunta = umaPergunta[i].title;
+    console.log(tituloUmaPergunta);
+    
+}
+}
+
