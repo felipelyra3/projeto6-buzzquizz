@@ -52,9 +52,9 @@
     padding: 36px;
     display: flex;
     box-sizing: border-box;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-around;  
+    justify-content: space-evenly;  
 }
 
 
@@ -162,4 +162,9 @@ color: #FF4B4B;
     font-size: 21px;
     font-weight: 400;
     margin-bottom: 85px;
+}
+
+.imagemResposta{
+    width: 90%;
+    height: 80%;
 }

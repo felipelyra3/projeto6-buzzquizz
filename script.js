@@ -659,6 +659,7 @@ function renderizarPerguntas(posicao){
    console.log(request.data[position].questions);
 
    const segundaTela = document.querySelector(".segundaTela");
+   let texto = "";
    segundaTela.innerHTML="";
    
    segundaTela.innerHTML = `
@@ -679,36 +680,78 @@ function renderizarPerguntas(posicao){
     let todasRespostas = todasPerguntas[i].answers;
 
     console.log(todasRespostas);
+    console.log(todasRespostas.length);
 
-    for (let i = 0; i < todasRespostas.length; i++) {
-
-    let todasImagens = todasRespostas[i].image;
-    let descricaoResposta = todasRespostas[i].text;
-
-
-    console.log(todasImagens);
-
-    let liImages =  `
-    <div class="cardPergunta">
+    texto +=    `<div class="cardPergunta">
 
     <ul class="boxPergunta">
-        <p class="tituloPergunta" style="background-color:${corPergunta}">${tituloPergunta}</p>
+    <p class="tituloPergunta" style="background-color:${corPergunta}">${tituloPergunta}</p>
+    
+            `
+
+    // console.log(todasImagens);
+
+    // segundaTela.innerHTML += `
+    // <div class="cardPergunta">
+
+    // <ul class="boxPergunta">
+    //     <p class="tituloPergunta" style="background-color:${corPergunta}">${tituloPergunta}</p>
+    
+    // `
+
+    // let liImages =  `
+     
+    //   <li class="cardResposta" >
+    //     <img src=${todasImagens}/>
+    //     <p class="resposta">${descricaoResposta}</p>
+    // </li>
+    // ` 
+    // segundaTela.innerHTML += liImages;
+
+    // segundaTela.innerHTML += `
+    // </ul>`
+    // }
         
+    for (let j = 0; j < todasRespostas.length; j++) {
+        texto += `<li class="cardResposta">
+        <img src = ${todasRespostas[j].image} class="imagemResposta">
+        <p class="resposta">${todasRespostas[j].text}</p>
+    </li>`;
 
-        <li class="cardResposta" >
-        <img src=${todasImagens}/>
-        <p class="resposta">${descricaoResposta}</p>
-    </li>
-    </ul>
-    ` 
-    segundaTela.innerHTML += liImages;
-
+        
     }
-    
-    
+    texto += `
+    </div>    
+    `
 }
    
+texto += `
 
-   
+<div class="nivel">
+
+<p class="resultado">88% de acerto: Você é praticamente um aluno de Hogwarts!</p>
+
+<div class="resultadoNivel">
+    <img src="./img/image 10.png" />
+    <div class="resultadoQuizz">Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de
+        comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
+    </div>
+</div>
+</div>
+
+<div class="reiniciarQuizz">Reiniciar Quizz</div>
+<div class="voltarHome">Voltar pra home</div>
+
+`
+segundaTela.innerHTML += texto;
+
+respostaCertarespostaErrada();
+ }
+
+ function respostaCertarespostaErrada () {
+
+    let todasRespostas = todasPerguntas[i].answers;
+
+    console.log(todasRespostas);
 
  }
