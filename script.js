@@ -741,14 +741,45 @@ let imagemNivel = todosOsNiveis[i].image;
 
 console.log(tituloLevel, porcentagemDeAcertos, textoNivel, imagemNivel);
 
-// if (porcentagemDeAcertos === 0){
+if (porcentagemDeAcertos === 0){
 
-// texto += `
+    texto += `
+    
+    <div class="nivel">
+    
+                <p class="resultado">${porcentagemDeAcertos}% de acerto: ${tituloLevel}</p>
+    
+                <div class="resultadoNivel">
+                    <img src=${imagemNivel} />
+                    <div class="resultadoQuizz">${textoNivel}</p>
+                    </div>
+                </div>
+            </div>
+    
+    
+    `
+    } if (porcentagemDeAcertos > 0 && porcentagemDeAcertos <= 100) {
+
+        texto += `
+    
+        <div class="nivel">
+        
+                    <p class="resultado">${porcentagemDeAcertos}% de acerto: ${tituloLevel}</p>
+        
+                    <div class="resultadoNivel">
+                        <img src=${imagemNivel} />
+                        <div class="resultadoQuizz">${textoNivel}</p>
+                        </div>
+                    </div>
+                </div>
+        
+        
+        `
+
+    }
+
+
 }
-
-
-
-
 
 
 
