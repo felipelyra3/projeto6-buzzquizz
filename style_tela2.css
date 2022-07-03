@@ -29,6 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .bannerQuizz p{
@@ -52,7 +53,7 @@
     padding: 36px;
     display: flex;
     box-sizing: border-box;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;  
 }
@@ -80,6 +81,10 @@ color: #009C22;
   opacity: 0.3;
 }
 
+.resposta {
+    display: block;
+    width: 100%;
+}
 .respostaErrada {
     opacity: 0.3;
 }
@@ -165,6 +170,11 @@ color: #FF4B4B;
 }
 
 .imagemResposta{
-    width: 90%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
+}
+
+.cardResposta {
+    width: 330px;
+    height: 175px;
 }
