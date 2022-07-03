@@ -72,9 +72,13 @@
     display: none;
 }
 
-.respostaCorreta p{
+.respostaCorreta {
 color: #009C22;
 }
+
+#respostaCorreta {
+    color: #009C22;
+    }
 
 .certa {
 

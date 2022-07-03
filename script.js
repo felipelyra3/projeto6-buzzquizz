@@ -15,6 +15,8 @@ let porcentagemMinimaDeAcerto = "";
 let urlDaImagemDoNivel = "";
 let descricaoDoNivel = "";
 let position = 0;
+let todasPerguntas = "";
+let requestGlobal = {};
 let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
@@ -619,6 +621,7 @@ function renderizarPerguntas(posicao){
     console.log(posicao);
     position = posicao;
 
+    
     const terceiraTela = document.querySelector(".terceiraTela");
 
     terceiraTela.innerHTML= "";
@@ -654,6 +657,11 @@ function renderizarPerguntas(posicao){
     // console.log(request.data[position]);
 
     let request = requisicao;
+    requestGlobal = requisicao;
+
+    console.log("aqui está o position global : " + position);
+    console.log(requestGlobal.data[position]);
+
 
    console.log(request.data[position].title);
    console.log(request.data[position].questions);
@@ -713,20 +721,47 @@ function renderizarPerguntas(posicao){
     // }
         
     for (let j = 0; j < todasRespostas.length; j++) {
-        texto += `<li class="cardResposta">
+
+         let respostaCertaouErrada = todasRespostas[j].isCorrectAnswer;
+
+        texto += `<li class="cardResposta" onClick="banana(this)">
         <img src = ${todasRespostas[j].image} class="imagemResposta">
-        <p class="resposta">${todasRespostas[j].text}</p>
+        <p  class="resposta">${todasRespostas[j].text}</p>
     </li>`;
 
+     
+    let cardResposta = document.querySelector(".cardResposta");
+        if (respostaCertaouErrada === true ){
+            console.log("resposta certa " + respostaCertaouErrada);
+
+
+        } 
+
+        if (respostaCertaouErrada === false){
+            console.log("resposta errada " + respostaCertaouErrada);
+        }
         
+
+        console.log(respostaCertaouErrada);
+
     }
+    
+        
+    
+    
     texto += `
     </div>    
     `
+
+    segundaTela.innerHTML += texto;
 }
    
 
-segundaTela.innerHTML += texto;
+
+
+
+
+//Niveis
 
 let todosOsNiveis = request.data[position].levels;
 
@@ -794,7 +829,39 @@ segundaTela.innerHTML += texto;
 console.log("chegou até aqui")
 
 
- }
+}
 
+function banana(elemento){
+    console.log("função banana")
+    console.log(requestGlobal.data[position]);
 
- 
+    let posicaoReqGlobal = requestGlobal.data[position];
+
+    let cardPergunta = document.querySelector(".cardResposta");
+    const pergs = posicaoReqGlobal.questions;
+    
+    for (let k = 0; k < pergs.length; k++){
+
+        let resps = pergs[k].answers;
+
+        for (let l = 0; l < resps.length; l++){
+        
+
+        if (cardPergunta !== null && resps[l].isCorrectAnswer){
+            cardPergunta.classList.remove("respostaCorreta")
+            elemento.classList.add("respostaCorreta")
+        }
+
+        if (cardPergunta !== null && resps[l].isCorrectAnswer === false){
+            console.log("essa é a resposta errada")
+            
+            elemento.classList.add("respostaErrada");
+        // }
+
+        }
+        
+    }
+    
+    }
+}
+
