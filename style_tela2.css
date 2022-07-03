@@ -76,13 +76,12 @@
 color: #009C22;
 }
 
-#respostaCorreta {
-    color: #009C22;
-    }
+
 
 .certa {
 
   opacity: 0.3;
+  color: #009C22;
 }
 
 .resposta {

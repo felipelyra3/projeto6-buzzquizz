@@ -724,7 +724,7 @@ function renderizarPerguntas(posicao){
 
          let respostaCertaouErrada = todasRespostas[j].isCorrectAnswer;
 
-        texto += `<li class="cardResposta" onClick="banana(this)">
+        texto += `<li class="cardResposta ${respostaCertaouErrada}" onClick="banana(this)">
         <img src = ${todasRespostas[j].image} class="imagemResposta">
         <p  class="resposta">${todasRespostas[j].text}</p>
     </li>`;
@@ -837,7 +837,10 @@ function banana(elemento){
 
     let posicaoReqGlobal = requestGlobal.data[position];
 
-    let cardPergunta = document.querySelector(".cardResposta");
+    // let cardResposta = document.querySelector()
+
+    let cardRespostaCorreta = document.querySelector(".cardResposta.true");
+    let cardRespostaErrada = document.querySelector(".cardResposta.false");
     const pergs = posicaoReqGlobal.questions;
     
     for (let k = 0; k < pergs.length; k++){
@@ -847,18 +850,19 @@ function banana(elemento){
         for (let l = 0; l < resps.length; l++){
         
 
-        if (cardPergunta !== null && resps[l].isCorrectAnswer){
-            cardPergunta.classList.remove("respostaCorreta")
-            elemento.classList.add("respostaCorreta")
-        }
+        if (cardRespostaCorreta !== null && elemento == cardRespostaCorreta){
+            console.log("essa resposta é a certa"),
+            elemento.classList.add("respostaCorreta");
+            cardRespostaErrada.classList.add("respostaErrada");
+        } 
 
-        if (cardPergunta !== null && resps[l].isCorrectAnswer === false){
+        if (cardRespostaErrada !== null && elemento == cardRespostaErrada){
             console.log("essa é a resposta errada")
-            
-            elemento.classList.add("respostaErrada");
-        // }
-
+            elemento.classList.add("errou");
+            cardRespostaCorreta.classList.add("certa");
         }
+
+    
         
     }
     
