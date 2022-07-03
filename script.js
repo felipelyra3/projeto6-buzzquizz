@@ -725,33 +725,45 @@ function renderizarPerguntas(posicao){
     `
 }
    
+
+segundaTela.innerHTML += texto;
+
+let todosOsNiveis = request.data[position].levels;
+
+console.log(todosOsNiveis);
+
+for (let i = 0; i < todosOsNiveis.length; i++) {
+
+let tituloLevel = todosOsNiveis[i].title;
+let porcentagemDeAcertos = todosOsNiveis[i].minValue;
+let textoNivel = todosOsNiveis[i].text;
+let imagemNivel = todosOsNiveis[i].image;
+
+console.log(tituloLevel, porcentagemDeAcertos, textoNivel, imagemNivel);
+
+// if (porcentagemDeAcertos === 0){
+
+// texto += `
+}
+
+
+
+
+
+
+
 texto += `
-
-<div class="nivel">
-
-<p class="resultado">88% de acerto: Você é praticamente um aluno de Hogwarts!</p>
-
-<div class="resultadoNivel">
-    <img src="./img/image 10.png" />
-    <div class="resultadoQuizz">Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de
-        comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
-    </div>
-</div>
-</div>
 
 <div class="reiniciarQuizz">Reiniciar Quizz</div>
 <div class="voltarHome">Voltar pra home</div>
 
 `
+
 segundaTela.innerHTML += texto;
+console.log("chegou até aqui")
 
-respostaCertarespostaErrada();
- }
-
- function respostaCertarespostaErrada () {
-
-    let todasRespostas = todasPerguntas[i].answers;
-
-    console.log(todasRespostas);
 
  }
+
+
+ 
