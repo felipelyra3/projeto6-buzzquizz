@@ -17,6 +17,8 @@ let descricaoDoNivel = "";
 let position = 0;
 let todasPerguntas = "";
 let requestGlobal = {};
+let contarAcertos = 0;
+let contarErros = 0;
 let object = {
     title: "Título do quizz",
     image: "https://http.cat/411.jpg",
@@ -729,21 +731,8 @@ function renderizarPerguntas(posicao){
         <p  class="resposta">${todasRespostas[j].text}</p>
     </li>`;
 
-     
-    let cardResposta = document.querySelector(".cardResposta");
-        if (respostaCertaouErrada === true ){
-            console.log("resposta certa " + respostaCertaouErrada);
 
-
-        } 
-
-        if (respostaCertaouErrada === false){
-            console.log("resposta errada " + respostaCertaouErrada);
-        }
         
-
-        console.log(respostaCertaouErrada);
-
     }
     
         
@@ -755,7 +744,7 @@ function renderizarPerguntas(posicao){
 
     segundaTela.innerHTML += texto;
 }
-   
+
 
 
 
@@ -820,8 +809,8 @@ if (porcentagemDeAcertos === 0){
 
 texto += `
 
-<div class="reiniciarQuizz">Reiniciar Quizz</div>
-<div class="voltarHome">Voltar pra home</div>
+<div class="reiniciarQuizz" onClick="sucessoRenderiza()">Reiniciar Quizz</div>
+<div class="voltarHome" onClick="voltarHome()">Voltar pra home</div>
 
 `
 
@@ -854,12 +843,16 @@ function banana(elemento){
             console.log("essa resposta é a certa"),
             elemento.classList.add("respostaCorreta");
             cardRespostaErrada.classList.add("respostaErrada");
+            contarAcertos++;
+            console.log("quantidade de acertos " + contarAcertos);
         } 
 
         if (cardRespostaErrada !== null && elemento == cardRespostaErrada){
             console.log("essa é a resposta errada")
             elemento.classList.add("errou");
             cardRespostaCorreta.classList.add("certa");
+            contarErros++;
+            console.log("quantidade de erros " + contarAcertos);
         }
 
     
@@ -867,5 +860,13 @@ function banana(elemento){
     }
     
     }
+}
+
+
+function voltarHome(){
+    let segundaTela = document.querySelector(".segundaTela")
+    segundaTela.innerHTML = ``
+
+    telaInicialRequest();
 }
 
