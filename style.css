@@ -340,7 +340,7 @@ body {
 
 /* RESOLUÇÃO PARA MOBILE - MÁXIMA DE 1100px */
 @media (max-width: 110px) {
-    .terceiraTela {}
+    /* .terceiraTela {} */
 
     .conteinerInputs {
         width: 100vh;
