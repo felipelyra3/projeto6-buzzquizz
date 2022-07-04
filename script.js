@@ -582,7 +582,7 @@ function seuQuizzEstaPronto() {
         </div>
     </div>
     <div class="center seuQuizzEstaPronto">
-        <div class="botaoCriarPerguntas botaoAcessarQuizz" onclick="chamaTela2()">
+        <div class="botaoCriarPerguntas botaoAcessarQuizz" onclick="renderizarPerguntas(${0})">
             <h1>Acessar Quizz</h1>
         </div>
         <h2 onclick="telaInicialRequest()">Voltar Home</h2>
